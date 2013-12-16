@@ -1,0 +1,2 @@
+require './popeye'
+run Popeye
