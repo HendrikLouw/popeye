@@ -12,5 +12,9 @@ describe "A valid series" do
   it "should return a specific season" do
     expect(@series.season(1)).to be_a Season
   end
+
+  it "should have a title" do
+    expect(@series.title).to eq "The Big Bang Theory"
+  end
   
 end

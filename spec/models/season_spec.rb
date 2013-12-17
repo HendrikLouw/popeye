@@ -10,4 +10,5 @@ describe 'A Season' do
   it "should have a number of episodes" do
     expect(@season.number_of_episodes).to eq 18 
   end
+
 end

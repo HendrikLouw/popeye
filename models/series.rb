@@ -15,6 +15,10 @@ class Series
     season
   end
   
+  def title 
+    series_summary.title.gsub(/\"/, '')
+  end
+  
   private
   def search 	    
     if @correct_series.nil? 
