@@ -18,18 +18,27 @@ class Series
   def title 
     series_summary.title.gsub(/\"/, '')
   end
+
+  def to_json 
+    {
+      title: title,
+      seasons: number_of_seasons,
+      imdb_id: @imdb_id
+    }
+  end
   
   private
-  def search 	    
+  def search
     if @correct_series.nil? 
       search = Imdb::Search.new(@name)
-      only_series = search.movies.select { |result| result.title =~ /#{@name}[\w\s()]+\(TV Series\)/ }  
-      @correct_series = only_series.select{ |r| r.title !~ /TV Episode/ }
+      only_series = search.movies.select { |result| result.title =~ /#{@name}[\w\s()]+\(TV Series\)/i }
+      @correct_series = only_series.select{ |r| r.title !~ /TV Episode/i }
     end
     @correct_series
   end
 
   def series_summary
-    @series_summary ||= Imdb::Serie.new(search.first.id)
+    @imdb_id ||= search.first.id
+    @series_summary ||= Imdb::Serie.new(@imdb_id)
   end
 end

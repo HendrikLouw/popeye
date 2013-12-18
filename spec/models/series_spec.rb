@@ -16,5 +16,5 @@ describe "A valid series" do
   it "should have a title" do
     expect(@series.title).to eq "The Big Bang Theory"
   end
-  
+
 end
